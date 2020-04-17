@@ -1,6 +1,6 @@
 ﻿param(
 	[Parameter(mandatory = $False)]
-	[string]$TenantGroupName = "Default Tenant Group",
+	[string]$TenantGroupName,
 
 	[Parameter(mandatory = $True)]
 	[string]$TenantName,

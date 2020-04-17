@@ -31,10 +31,10 @@
 
         [Parameter(Mandatory = $false)]
         [ValidateSet("AzureCloud", "AzureUSGovernment")]
-        [string]$EnvironmentName = "AzureCloud",
+        [string]$EnvironmentName,
 
         [Parameter(Mandatory = $false)]
-        [int] $SelfSignedCertNoOfMonthsUntilExpired = 12
+        [int] $SelfSignedCertNoOfMonthsUntilExpired
     )
 
     function CreateSelfSignedCertificate([string] $certificateName, [string] $selfSignedCertPlainPassword,
