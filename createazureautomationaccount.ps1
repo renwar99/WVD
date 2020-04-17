@@ -1,27 +1,13 @@
 ﻿param(
-	[Parameter(mandatory = $True)][string]$SubscriptionId,
-	[Parameter(mandatory = $False)][string]$ResourceGroupName,
-	[Parameter(mandatory = $False)]$AutomationAccountName,
-	[Parameter(mandatory = $False)][string]$Location,
-	[Parameter(mandatory = $False)][string]$WorkspaceName
+	[Parameter(mandatory = $True)][string]$Subscription,
+	[Parameter(mandatory = $true)][string]$ResourceGroupName,
+	[Parameter(mandatory = $True)][string]$AutomationAccountName,
+	[Parameter(mandatory = $True)][string]$Location,
+	[Parameter(mandatory = $True)][string]$WorkspaceName,
+    [Parameter(mandatory = $True)][string]$RunbookName,
+    [Parameter(mandatory = $True)][string]$WebhookName,
+    [Parameter(mandatory = $True)][string]$ScriptRepoLocation
 )
-#Initializing variables
-$ScriptRepoLocation = "https://raw.githubusercontent.com/Azure/RDS-Templates/master/wvd-templates/wvd-scaling-script/"
-$RunbookName = "WVDAutoScaleRunbook"
-$WebhookName = "WVDAutoScaleWebhook"
-
-# Set the ExecutionPolicy
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser -Force -Confirm:$false
-
-# Setting ErrorActionPreference to stop script execution when error occurs
-$ErrorActionPreference = "Stop"
-
-# Import Az and AzureAD modules
-Import-Module Az.Resources
-Import-Module Az.Accounts
-Import-Module Az.OperationalInsights
-Import-Module Az.Automation
-
 
 # Get the azure context
 $Context = Get-AzContext
@@ -32,7 +18,7 @@ if ($Context -eq $null)
 }
 
 # Select the subscription
-$Subscription = Select-azSubscription -SubscriptionId $SubscriptionId
+$Subscription = Select-azSubscription -SubscriptionId $Subscription 
 Set-AzContext -SubscriptionObject $Subscription.ExtendedProperties
 
 # Get the Role Assignment of the authenticated user
