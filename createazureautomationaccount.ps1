@@ -3,14 +3,14 @@
 	[string]$SubscriptionId,
 
 	[Parameter(mandatory = $False)]
-	[string]$ResourceGroupName = "WVDAutoScaleResourceGroup",
+	[string]$ResourceGroupName,
 
 
 	[Parameter(mandatory = $False)]
-	$AutomationAccountName = "WVDAutoScaleAutomationAccount",
+	$AutomationAccountName,
 
 	[Parameter(mandatory = $False)]
-	[string]$Location = "West US2",
+	[string]$Location,
 
 	[Parameter(mandatory = $False)]
 	[string]$WorkspaceName
