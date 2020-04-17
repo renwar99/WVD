@@ -1,22 +1,10 @@
 ﻿param(
-	[Parameter(mandatory = $True)]
-	[string]$SubscriptionId,
-
-	[Parameter(mandatory = $False)]
-	[string]$ResourceGroupName,
-
-
-	[Parameter(mandatory = $False)]
-	$AutomationAccountName,
-
-	[Parameter(mandatory = $False)]
-	[string]$Location,
-
-	[Parameter(mandatory = $False)]
-	[string]$WorkspaceName
-
+	[Parameter(mandatory = $True)][string]$SubscriptionId,
+	[Parameter(mandatory = $False)][string]$ResourceGroupName,
+	[Parameter(mandatory = $False)]$AutomationAccountName,
+	[Parameter(mandatory = $False)][string]$Location,
+	[Parameter(mandatory = $False)][string]$WorkspaceName
 )
-
 #Initializing variables
 $ScriptRepoLocation = "https://raw.githubusercontent.com/Azure/RDS-Templates/master/wvd-templates/wvd-scaling-script/"
 $RunbookName = "WVDAutoScaleRunbook"
