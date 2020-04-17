@@ -1,42 +1,4 @@
-﻿<#
-.SYNOPSIS
-	This is a sample script for to deploy the required resources to execute scaling script in Microsoft Azure Automation Account.
-.DESCRIPTION
-	This sample script will create the scale script execution required resources in Microsoft Azure. Resources are resourcegroup,automation account,automation account runbook, 
-    automation account webhook, log analytic workspace and with customtables.
-    Run this PowerShell script in adminstrator mode
-    This script depends  Az PowerShell module. To install Az module execute the following commands. Use "-AllowClobber" parameter if you have more than one version of PowerShell modules installed.
-	
-    PS C:\>Install-Module Az  -AllowClobber
-
-.PARAMETER SubscriptionId
- Required
- Provide Subscription Id of the Azure.
-
-.PARAMETER ResourcegroupName
- Optional
- Name of the resource group to use
- If the group does not exist it will be created
- 
-.PARAMETER AutomationAccountName
- Optional
- Provide the name of the automation account name do you want create.
-
-.PARAMETER Location
- Optional
- The datacenter location of the resources
-
-.PARAMETER WorkspaceName
- Optional
- Provide name of the log analytic workspace.
-
-.NOTES
-If you providing existing automation account. You need provide existing automation account ResourceGroupName for ResourceGroupName parameter.
- 
- Example: .\createautomationaccountandloganalyticworkspace.ps1  -SubscriptionID "Your Azure SubscriptionID" -ResourceGroupName "Name of the resource group" -AutomationAccountName "Name of the automation account name" -Location "The datacenter location of the resources" -WorkspaceName "Provide existing log analytic workspace name" 
-
-#>
-param(
+﻿param(
 	[Parameter(mandatory = $True)]
 	[string]$SubscriptionId,
 
