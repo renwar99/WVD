@@ -1,4 +1,5 @@
-﻿param(
+﻿
+param(
 	[Parameter(mandatory = $True)][string]$SubscriptionId,
 	[Parameter(mandatory = $False)][string]$ResourceGroupName,
 	[Parameter(mandatory = $False)]$AutomationAccountName,
