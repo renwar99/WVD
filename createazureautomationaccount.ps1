@@ -79,9 +79,14 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 			[string]$ModuleVersion
 		)
 
+        Write-Output "ResourceGroupName: $($ResourceGroupName)"
+        Write-Output "AutomationAccountName: $($AutomationAccountName)"
+        Write-Output "ModuleName: $($ModuleName)"
+        Write-Output "ModuleVersion: $($ModuleVersion)"
+        Write-Output "Url: $($Url)"
 
 		$Url = "https://www.powershellgallery.com/api/v2/Search()?`$filter=IsLatestVersion&searchTerm=%27$ModuleName $ModuleVersion%27&targetFramework=%27%27&includePrerelease=false&`$skip=0&`$top=40"
-
+        Write-Output "Url: $($Url)"
 		[array]$SearchResult = Invoke-RestMethod -Method Get -Uri $Url
 		if ($SearchResult.Count -ne 1) {
 			$SearchResult = $SearchResult[0]
@@ -101,7 +106,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 			}
 
 			$ModuleContentUrl = "https://www.powershellgallery.com/api/v2/package/$ModuleName/$ModuleVersion"
-
+             Write-Output "ModuleContentUrl: $($ModuleContentUrl)"
 			# Test if the module/version combination exists
 			try {
 				Invoke-RestMethod $ModuleContentUrl -ErrorAction Stop | Out-Null
