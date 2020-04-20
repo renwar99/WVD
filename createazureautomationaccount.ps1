@@ -17,7 +17,7 @@ Write-Output "RunbookName: $($RunbookName)"
 Write-Output "WebhookName: $($WebhookName)"
 Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)"
 
-
+$WorkspaceName=$null
 
 # Get the azure context
 $Context = Get-AzContext
@@ -193,7 +193,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM 
 		}
 	}
-	if ($WorkspaceName) {
+	if ($WorkspaceName -ne $null) {
 		#Check if the log analytic workspace is exist
 		$LAWorkspace = Get-AzOperationalInsightsWorkspace | Where-Object { $_.Name -eq $WorkspaceName }
 		if (!$LAWorkspace) {
