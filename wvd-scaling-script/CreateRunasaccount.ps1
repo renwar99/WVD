@@ -31,8 +31,8 @@
         [String] $EnterpriseCertPlainPasswordForClassicRunAsAccount
     )
 
-    $EnvironmentName = "AzureCloud"
-    $SelfSignedCertNoOfMonthsUntilExpired = 24
+$EnvironmentName = "AzureCloud"
+$SelfSignedCertNoOfMonthsUntilExpired = 24
 
     function CreateSelfSignedCertificate([string] $certificateName, [string] $selfSignedCertPlainPassword,
         [string] $certPath, [string] $certPathCer, [string] $selfSignedCertNoOfMonthsUntilExpired ) {
