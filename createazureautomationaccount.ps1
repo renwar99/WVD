@@ -83,7 +83,6 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
         Write-Output "AutomationAccountName: $($AutomationAccountName)"
         Write-Output "ModuleName: $($ModuleName)"
         Write-Output "ModuleVersion: $($ModuleVersion)"
-        Write-Output "Url: $($Url)"
 
 		$Url = "https://www.powershellgallery.com/api/v2/Search()?`$filter=IsLatestVersion&searchTerm=%27$ModuleName $ModuleVersion%27&targetFramework=%27%27&includePrerelease=false&`$skip=0&`$top=40"
         Write-Output "Url: $($Url)"
@@ -122,7 +121,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 				# Find the actual blob storage location of the module
 				do {
 					$ActualUrl = $ModuleContentUrl
-					$ModuleContentUrl = (Invoke-WebRequest -Uri $ModuleContentUrl -MaximumRedirection 0 -UseBasicParsing -ErrorAction Ignore).Headers.Location
+					$ModuleContentUrl = $(Invoke-WebRequest -Uri $ModuleContentUrl -MaximumRedirection 0 -UseBasicParsing -ErrorAction Ignore).Headers.Location
 				} while ($ModuleContentUrl -ne $Null)
 
 				New-AzAutomationModule `
