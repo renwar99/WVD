@@ -162,7 +162,8 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
         "existingAutomationAccountName" = $AutomationAccountName
         "RunbookName" = $RunbookName
     }
-	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ScriptRepoLocation/runbookCreationTemplate.json" -TemplateParameterObject $TempParameter -Force -Verbose
+    Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)"
+	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$($ScriptRepoLocation)/runbookCreationTemplate.json" -TemplateParameterObject $TempParameter -Force -Verbose
 	if ($DeploymentStatus.ProvisioningState -eq "Succeeded") {
 
 		#Check if the Webhook URI exists in automation variable
