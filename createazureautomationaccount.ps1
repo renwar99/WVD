@@ -18,7 +18,7 @@ if ($Context -eq $null)
 }
 
 # Select the subscription
-$Subscription = Select-azSubscription -SubscriptionId $Subscription 
+$Subscription = Select-azSubscription -SubscriptionId $SubscriptionA 
 Set-AzContext -SubscriptionObject $Subscription.ExtendedProperties
 
 # Get the Role Assignment of the authenticated user
@@ -47,8 +47,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 		[pscustomobject]@{ ModuleName = 'OMSIngestionAPI'; ModuleVersion = '1.6.0' }
 		[pscustomobject]@{ ModuleName = 'Az.Compute'; ModuleVersion = '3.1.0' }
 		[pscustomobject]@{ ModuleName = 'Az.Resources'; ModuleVersion = '1.8.0' }
-		[pscustomobject]@{ ModuleName = 'Az.Automation'; ModuleVersion = '1.3.4' }
-	)
+		[pscustomobject]@{ ModuleName = 'Az.A
 
 	#Function to add required modules to Azure Automation account
 	function AddingModules-toAutomationAccount {
