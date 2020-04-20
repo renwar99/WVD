@@ -12,9 +12,6 @@
         [String] $SubscriptionId,
 
         [Parameter(Mandatory = $true)]
-        [Boolean] $CreateClassicRunAsAccount,
-
-        [Parameter(Mandatory = $true)]
         [String] $SelfSignedCertPlainPassword,
 
         [Parameter(Mandatory = $false)]
@@ -29,10 +26,10 @@
         [Parameter(Mandatory = $false)]
         [String] $EnterpriseCertPlainPasswordForClassicRunAsAccount
     )
-
+$CreateClassicRunAsAccount=$false
 $EName = "AzureCloud"
 $SelfSignedCertNoOfMonthsUntilExpired = 24
-Write-Output "update 42"
+Write-Output "update 44"
 
     function CreateSelfSignedCertificate([string] $certificateName, [string] $selfSignedCertPlainPassword,
         [string] $certPath, [string] $certPathCer, [string] $selfSignedCertNoOfMonthsUntilExpired ) {
