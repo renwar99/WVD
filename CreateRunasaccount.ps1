@@ -83,6 +83,7 @@ Write-Output "update 42"
         Remove-AzAutomationConnection -ResourceGroupName $resourceGroup -AutomationAccountName $automationAccountName -Name $connectionAssetName -Force -ErrorAction SilentlyContinue
         New-AzAutomationConnection -ResourceGroupName $ResourceGroup -AutomationAccountName $automationAccountName -Name $connectionAssetName -ConnectionTypeName $connectionTypeName -ConnectionFieldValues $connectionFieldValues
     }
+    <#
 
     Import-Module AzureRm.Profile
     Import-Module AzureRm.Resources
@@ -92,11 +93,11 @@ Write-Output "update 42"
         Write-Error -Message "Please install the latest Azure PowerShell and retry. Relevant doc url : https://docs.microsoft.com/powershell/azureps-cmdlets-docs/ "
         return
     }
-
+    #>
     # To use the new Az modules to create your Run As accounts, please uncomment the following lines and ensure you comment out the previous 8 lines that import the AzureRM modules to avoid any issues. To learn about about using Az modules in your Automation account see https://docs.microsoft.com/azure/automation/az-modules.
 
-    # Import-Module Az.Automation
-    # Enable-AzureRmAlias
+     Import-Module Az.Automation
+     Enable-AzureRmAlias
 
 
     Connect-AzAccount -Environment $EName
