@@ -164,7 +164,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
     }
     Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)/runbookCreationTemplate.json"
     pause
-	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$($ScriptRepoLocation)/runbookCreationTemplate.json" -TemplateParameterObject $TempParameter
+	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateObject $((New-Object System.Net.WebClient).DownloadString("$($ScriptRepoLocation)/runbookCreationTemplate.json")) -TemplateParameterObject $TempParameter
 	if ($DeploymentStatus.ProvisioningState -eq "Succeeded") {
 
 		#Check if the Webhook URI exists in automation variable
