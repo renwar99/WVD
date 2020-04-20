@@ -1,5 +1,5 @@
 ﻿param(
-	[Parameter(mandatory = $True)][string]$Subscription,
+	[Parameter(mandatory = $True)][string]$Sub,
 	[Parameter(mandatory = $true)][string]$ResourceGroupName,
 	[Parameter(mandatory = $True)][string]$AutomationAccountName,
 	[Parameter(mandatory = $True)][string]$Location,
@@ -8,7 +8,11 @@
     [Parameter(mandatory = $True)][string]$WebhookName,
     [Parameter(mandatory = $True)][string]$ScriptRepoLocation
 )
-
+if ($Sub -eq $null)
+{
+	Write-Error "Sub IS NULL"
+	exit
+}
 # Get the azure context
 $Context = Get-AzContext
 if ($Context -eq $null)
@@ -18,8 +22,8 @@ if ($Context -eq $null)
 }
 
 # Select the subscription
-Write-Output $Subscription
-Set-AzContext -SubscriptionObject $(Select-azSubscription -SubscriptionId $Subscription).ExtendedProperties
+Write-Output $Sub
+Set-AzContext -SubscriptionObject $(Select-azSubscription -SubscriptionId $Sub).ExtendedProperties
 
 # Get the Role Assignment of the authenticated user
 $RoleAssignment = (Get-AzRoleAssignment -SignInName $Context.Account)
