@@ -162,7 +162,8 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
         "existingAutomationAccountName" = $AutomationAccountName
         "RunbookName" = $RunbookName
     }
-    Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)"
+    Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)/runbookCreationTemplate.json"
+    pause
 	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$($ScriptRepoLocation)/runbookCreationTemplate.json" -TemplateParameterObject $TempParameter -Force -Verbose
 	if ($DeploymentStatus.ProvisioningState -eq "Succeeded") {
 
