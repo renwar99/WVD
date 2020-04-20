@@ -167,7 +167,6 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
         "RunbookName" = $RunbookName
     }
     Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)/runbookCreationTemplate.json"
-    pause
 	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateObject $((New-Object System.Net.WebClient).DownloadString("$($ScriptRepoLocation)/runbookCreationTemplate.json") | ConvertFrom-Json -AsHashtable) -TemplateParameterObject $TempParameter
 	if ($DeploymentStatus.ProvisioningState -eq "Succeeded") {
 
