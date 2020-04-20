@@ -139,7 +139,10 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 			[string]$AutomationAccountName,
 
 			[Parameter(mandatory = $true)]
-			[string]$ModuleName
+			[string]$ModuleName,
+
+            [Parameter(mandatory = $true)]
+			[string]$SLocation
 		)
 
 		$IsModuleImported = $false
@@ -162,9 +165,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
         "existingAutomationAccountName" = $AutomationAccountName
         "RunbookName" = $RunbookName
     }
-    Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)/runbookCreationTemplate.json"
-    pause
-	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$($ScriptRepoLocation)/runbookCreationTemplate.json" -TemplateParameterObject $TempParameter -Force -Verbose
+	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$($SLocation)/runbookCreationTemplate.json" -TemplateParameterObject $TempParameter -Force -Verbose
 	if ($DeploymentStatus.ProvisioningState -eq "Succeeded") {
 
 		#Check if the Webhook URI exists in automation variable
@@ -185,11 +186,11 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 		$ImportedModule = Get-AzAutomationModule -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM -Name $Module.ModuleName -ErrorAction SilentlyContinue
 		if ($ImportedModule -eq $Null) {
 			AddingModules-toAutomationAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM -ModuleName $Module.ModuleName
-			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName
+			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -SLocation $ScriptRepoLocation
 		}
 		elseif ($ImportedModule.version -ne $Module.ModuleVersion) {
 			AddingModules-toAutomationAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM -ModuleName $Module.ModuleName
-			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM
+			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM -SLocation $ScriptRepoLocation
 		}
 	}
 	if ($WorkspaceName) {
