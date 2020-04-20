@@ -1,5 +1,4 @@
-﻿#Requires -RunAsAdministrator
-    Param (
+﻿    Param (
         [Parameter(Mandatory = $true)]
         [String] $ResourceGroup,
 
