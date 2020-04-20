@@ -3,7 +3,6 @@
 	[Parameter(mandatory = $true)][string]$ResourceGroupName,
 	[Parameter(mandatory = $True)][string]$AutomationAccountNameM,
 	[Parameter(mandatory = $True)][string]$Location,
-	[Parameter(mandatory = $True)][string]$WorkspaceName,
     [Parameter(mandatory = $True)][string]$RunbookName,
     [Parameter(mandatory = $True)][string]$WebhookName,
     [Parameter(mandatory = $True)][string]$ScriptRepoLocation
@@ -14,7 +13,6 @@ Write-Output "Subscription: $($Sub)"
 Write-Output "ResourceGroupName: $($ResourceGroupName)"
 Write-Output "AutomationAccountName: $($AutomationAccountNameM)"
 Write-Output "Location: $($Location)"
-Write-Output "WorkspaceName: $($WorkspaceName)"
 Write-Output "RunbookName: $($RunbookName)"
 Write-Output "WebhookName: $($WebhookName)"
 Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)"
@@ -282,7 +280,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 		Write-Output "Automation Account Name:$AutomationAccountNameM"
 		Write-Output "Webhook URI: $($WebhookURI.value)"
 	} else {
-		Write-Output "Automation Account Name:$AutomationAccountNameM"
+		Write-Output "Automation Account Name:$AutomationAccountName"
 		Write-Output "Webhook URI: $($WebhookURI.value)"
 	}
 }
