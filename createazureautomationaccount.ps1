@@ -8,11 +8,18 @@
     [Parameter(mandatory = $True)][string]$WebhookName,
     [Parameter(mandatory = $True)][string]$ScriptRepoLocation
 )
-if ($Sub -eq $null)
-{
-	Write-Output "Sub IS NULL"
-	exit
-}
+
+
+Write-Output "Subscription: $($Sub)"
+Write-Output "ResourceGroupName: $($ResourceGroupName)"
+Write-Output "AutomationAccountName: $($AutomationAccountName)"
+Write-Output "Location: $($Location)"
+Write-Output "WorkspaceName: $($WorkspaceName)"
+Write-Output "RunbookName: $($RunbookName)"
+Write-Output "WebhookName: $($WebhookName)"
+Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)"
+
+
 
 # Get the azure context
 $Context = Get-AzContext
