@@ -10,9 +10,10 @@
 )
 if ($Sub -eq $null)
 {
-	Write-Error "Sub IS NULL"
+	Write-Output "Sub IS NULL"
 	exit
 }
+
 # Get the azure context
 $Context = Get-AzContext
 if ($Context -eq $null)
