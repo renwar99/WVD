@@ -30,8 +30,9 @@
         [String] $EnterpriseCertPlainPasswordForClassicRunAsAccount
     )
 
-$EnvironmentName = "AzureCloud"
+$EName = "AzureCloud"
 $SelfSignedCertNoOfMonthsUntilExpired = 24
+Write-Output "update 39"
 
     function CreateSelfSignedCertificate([string] $certificateName, [string] $selfSignedCertPlainPassword,
         [string] $certPath, [string] $certPathCer, [string] $selfSignedCertNoOfMonthsUntilExpired ) {
@@ -98,7 +99,7 @@ $SelfSignedCertNoOfMonthsUntilExpired = 24
     # Enable-AzureRmAlias
 
 
-    Connect-AzAccount -Environment $EnvironmentName
+    Connect-AzAccount -Environment $EName
     $Subscription = Get-AzSubscription -SubscriptionId $SubscriptionId
 
     # Create a Run As account by using a service principal
