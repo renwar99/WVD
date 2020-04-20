@@ -18,6 +18,7 @@ if ($Context -eq $null)
 }
 
 # Select the subscription
+Write-Output $Subscription
 Set-AzContext -SubscriptionObject $(Select-azSubscription -SubscriptionId $Subscription).ExtendedProperties
 
 # Get the Role Assignment of the authenticated user
