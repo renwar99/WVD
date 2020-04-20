@@ -1,7 +1,7 @@
 ﻿param(
 	[Parameter(mandatory = $True)][string]$Sub,
 	[Parameter(mandatory = $true)][string]$ResourceGroupName,
-	[Parameter(mandatory = $True)][string]$AutomationAccountName,
+	[Parameter(mandatory = $True)][string]$AutomationAccountNameM,
 	[Parameter(mandatory = $True)][string]$Location,
 	[Parameter(mandatory = $True)][string]$WorkspaceName,
     [Parameter(mandatory = $True)][string]$RunbookName,
@@ -12,7 +12,7 @@
 
 Write-Output "Subscription: $($Sub)"
 Write-Output "ResourceGroupName: $($ResourceGroupName)"
-Write-Output "AutomationAccountName: $($AutomationAccountName)"
+Write-Output "AutomationAccountName: $($AutomationAccountNameM)"
 Write-Output "Location: $($Location)"
 Write-Output "WorkspaceName: $($WorkspaceName)"
 Write-Output "RunbookName: $($RunbookName)"
@@ -47,10 +47,10 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 	}
 
 	#Check if the Automation Account exist
-	$AutomationAccount = Get-AzAutomationAccount -ResourceGroupName $ResourceGroupName -Name $AutomationAccountName -ErrorAction SilentlyContinue
+	$AutomationAccount = Get-AzAutomationAccount -ResourceGroupName $ResourceGroupName -Name $AutomationAccountNameM -ErrorAction SilentlyContinue
 	if ($AutomationAccount -eq $null) {
-		New-AzAutomationAccount -ResourceGroupName $ResourceGroupName -Name $AutomationAccountName -Location $Location -Plan Free -Verbose
-		Write-Output "Automation Account was created with name $AutomationAccountName"
+		New-AzAutomationAccount -ResourceGroupName $ResourceGroupName -Name $AutomationAccountNameM -Location $Location -Plan Free -Verbose
+		Write-Output "Automation Account was created with name $AutomationAccountNameM"
 	}
 
 	$RequiredModules = @(
@@ -176,14 +176,14 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 	# Required modules imported from Automation Account Modules gallery for Scale Script execution
 	foreach ($Module in $RequiredModules) {
 		# Check if the required modules are imported 
-		$ImportedModule = Get-AzAutomationModule -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -Name $Module.ModuleName -ErrorAction SilentlyContinue
+		$ImportedModule = Get-AzAutomationModule -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM -Name $Module.ModuleName -ErrorAction SilentlyContinue
 		if ($ImportedModule -eq $Null) {
-			AddingModules-toAutomationAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ModuleName $Module.ModuleName
+			AddingModules-toAutomationAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM -ModuleName $Module.ModuleName
 			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName
 		}
 		elseif ($ImportedModule.version -ne $Module.ModuleVersion) {
-			AddingModules-toAutomationAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ModuleName $Module.ModuleName
-			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName
+			AddingModules-toAutomationAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM -ModuleName $Module.ModuleName
+			Check-IfModuleIsImported -ModuleName $Module.ModuleName -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountNameM
 		}
 	}
 	if ($WorkspaceName) {
@@ -270,10 +270,10 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 
 		Write-Output "Log Analytics workspace id:$LogAnalyticsWorkspaceId"
 		Write-Output "Log Analytics workspace primarykey:$LogAnalyticsPrimaryKey"
-		Write-Output "Automation Account Name:$AutomationAccountName"
+		Write-Output "Automation Account Name:$AutomationAccountNameM"
 		Write-Output "Webhook URI: $($WebhookURI.value)"
 	} else {
-		Write-Output "Automation Account Name:$AutomationAccountName"
+		Write-Output "Automation Account Name:$AutomationAccountNameM"
 		Write-Output "Webhook URI: $($WebhookURI.value)"
 	}
 }
