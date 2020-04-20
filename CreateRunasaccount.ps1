@@ -32,7 +32,7 @@
 
 $EName = "AzureCloud"
 $SelfSignedCertNoOfMonthsUntilExpired = 24
-Write-Output "update 39"
+Write-Output "update 42"
 
     function CreateSelfSignedCertificate([string] $certificateName, [string] $selfSignedCertPlainPassword,
         [string] $certPath, [string] $certPathCer, [string] $selfSignedCertNoOfMonthsUntilExpired ) {
