@@ -56,6 +56,15 @@
 	[Parameter(mandatory = $True)]
 	[string]$LogOffMessageBody,
 
+    [Parameter(Mandatory = $true)]
+    [String] $User,
+
+    [Parameter(Mandatory = $true)]
+    [String] $Pass,
+
+    [Parameter(Mandatory = $true)]
+    [String] $ScriptRepoLocation,
+
 	[Parameter(mandatory = $False)]
 	[string]$LogAnalyticsWorkspaceId,
 
@@ -68,7 +77,6 @@
 
 #Initializing variables
 $RDBrokerURL = "https://rdbroker.wvd.microsoft.com"
-$ScriptRepoLocation = "https://raw.githubusercontent.com/Azure/RDS-Templates/master/wvd-templates/wvd-scaling-script"
 
 # Setting ErrorActionPreference to stop script execution when error occurs
 $ErrorActionPreference = "Stop"
@@ -82,6 +90,9 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser -Force -Con
 Import-Module Az.LogicApp
 Import-Module Az.Resources
 Import-Module Az.Accounts
+
+$Cred=$(New-Object System.Management.Automation.PSCredential("$($User)", $($Pass | ConvertTo-SecureString -AsPlainText -Force)))
+Login-AzAccount -Credential $Cred
 
 # Get the context
 $Context = Get-AzContext
