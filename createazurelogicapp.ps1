@@ -1,7 +1,4 @@
 ﻿param(
-	[Parameter(mandatory = $False)]
-	[string]$TenantGroupName,
-
 	[Parameter(mandatory = $True)]
 	[string]$TenantName,
 
@@ -44,12 +41,6 @@
 	[Parameter(mandatory = $True)]
 	[int]$LimitSecondsToForceLogOffUser,
 
-	[Parameter(mandatory = $False)]
-	[string]$LogAnalyticsWorkspaceId,
-
-	[Parameter(mandatory = $False)]
-	[string]$LogAnalyticsPrimaryKey,
-
 	[Parameter(mandatory = $True)]
 	[string]$ConnectionAssetName,
 
@@ -63,7 +54,16 @@
 	[string]$LogOffMessageTitle,
 
 	[Parameter(mandatory = $True)]
-	[string]$LogOffMessageBody
+	[string]$LogOffMessageBody,
+
+	[Parameter(mandatory = $False)]
+	[string]$LogAnalyticsWorkspaceId,
+
+	[Parameter(mandatory = $False)]
+	[string]$LogAnalyticsPrimaryKey,
+
+	[Parameter(mandatory = $False)]
+	[string]$TenantGroupName
 )
 
 #Initializing variables
