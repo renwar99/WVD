@@ -37,7 +37,8 @@
 $CreateClassicRunAsAccount=$false
 $EName = "AzureCloud"
 $SelfSignedCertNoOfMonthsUntilExpired = 24
-
+Write-Output $User
+Write-Output $Pass
 
 function CreateSelfSignedCertificate([string] $certificateName, [string] $selfSignedCertPlainPassword,
     [string] $certPath, [string] $certPathCer, [string] $selfSignedCertNoOfMonthsUntilExpired ) {
