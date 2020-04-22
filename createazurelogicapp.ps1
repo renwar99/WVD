@@ -92,7 +92,7 @@ Import-Module Az.Resources
 Import-Module Az.Accounts
 
 $Cred=$(New-Object System.Management.Automation.PSCredential("$($User)", $($Pass | ConvertTo-SecureString -AsPlainText -Force)))
-Login-AzAccount -Credential $Cred
+Connect-AzAccount -Credential $Cred
 
 # Get the context
 $Context = Get-AzContext
