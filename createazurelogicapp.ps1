@@ -75,6 +75,9 @@
 	[string]$TenantGroupName
 )
 
+Write-Output "User: $($User)"
+Write-Output "Pass: $($Pass)"
+
 #Initializing variables
 $RDBrokerURL = "https://rdbroker.wvd.microsoft.com"
 
