@@ -14,6 +14,12 @@
         [Parameter(Mandatory = $true)]
         [String] $SelfSignedCertPlainPassword,
 
+        [Parameter(Mandatory = $true)]
+        [String] $User,
+
+        [Parameter(Mandatory = $true)]
+        [String] $Pass,
+
         [Parameter(Mandatory = $false)]
         [string] $EnterpriseCertPathForRunAsAccount,
 
@@ -25,13 +31,8 @@
 
         [Parameter(Mandatory = $false)]
 
-        [String] $EnterpriseCertPlainPasswordForClassicRunAsAccount,
+        [String] $EnterpriseCertPlainPasswordForClassicRunAsAccount
 
-        [Parameter(Mandatory = $true)]
-        [String] $User,
-
-        [Parameter(Mandatory = $true)]
-        [String] $Pass
     )
 $CreateClassicRunAsAccount=$false
 $EName = "AzureCloud"
