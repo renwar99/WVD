@@ -161,11 +161,13 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 	#if($Runbook -eq $null){
 	#Creating a runbook and published the basic Scale script file
     $TempParameter= @{
+        "_artifactsLocation" = "$($ScriptRepoLocation)wvd-scaling-script/"
+        "_artifactsLocationSasToken" = ""
         "existingAutomationAccountName" = $AutomationAccountName
         "RunbookName" = $RunbookName
     }
-    Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)/runbookCreationTemplate.json"
-	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateObject $((New-Object System.Net.WebClient).DownloadString("$($ScriptRepoLocation)/runbookCreationTemplate.json") | ConvertFrom-Json -AsHashtable) -TemplateParameterObject $TempParameter
+    Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)wvd-scaling-script/runbookCreationTemplate.json"
+	$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$($ScriptRepoLocation)wvd-scaling-script/runbookCreationTemplate.json" -TemplateParameterObject $TempParameter
 	if ($DeploymentStatus.ProvisioningState -eq "Succeeded") {
 
 		#Check if the Webhook URI exists in automation variable
