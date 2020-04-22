@@ -103,8 +103,8 @@ if (!(($AzureRmProfileVersion.Major -ge 3 -and $AzureRmProfileVersion.Minor -ge 
      Import-Module Az.Automation
      Enable-AzureRmAlias
 
-
-    Connect-AzAccount -Environment $EName -Credential 
+    $Cred=$(New-Object System.Management.Automation.PSCredential("$($User)", $($Pass | ConvertTo-SecureString -AsPlainText -Force)))
+    Connect-AzAccount -Environment $EName -Credential $Cred
     $Subscription = Get-AzSubscription -SubscriptionId $SubscriptionId
 
     # Create a Run As account by using a service principal
