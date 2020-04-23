@@ -5,7 +5,8 @@
 	[Parameter(mandatory = $True)][string]$Location,
     [Parameter(mandatory = $True)][string]$RunbookName,
     [Parameter(mandatory = $True)][string]$WebhookName,
-    [Parameter(mandatory = $True)][string]$ScriptRepoLocation
+    [Parameter(mandatory = $True)][string]$ScriptRepoLocation,
+    [Parameter(mandatory = $True)][string]$WorkspaceName
 )
 
 
@@ -17,7 +18,7 @@ Write-Output "RunbookName: $($RunbookName)"
 Write-Output "WebhookName: $($WebhookName)"
 Write-Output "ScriptRepoLocation: $($ScriptRepoLocation)"
 
-$WorkspaceName=$null
+
 
 # Get the azure context
 $Context = Get-AzContext
