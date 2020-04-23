@@ -12,7 +12,9 @@
         "type": "String",
         "allowedValues": [
           "eastus",
-          "westus"
+          "westus",
+		  "japanwest",
+		  "japaneast"
         ],
         "defaultValue": "eastus",
         "metadata": {
