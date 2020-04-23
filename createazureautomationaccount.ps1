@@ -162,7 +162,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 	#if($Runbook -eq $null){
 	#Creating a runbook and published the basic Scale script file
     $TempParameter= @{
-        "_artifactsLocation" = "$($ScriptRepoLocation)wvd-scaling-script/"
+        "_artifactsLocation" = "$($ScriptRepoLocation)/wvd-scaling-script/"
         "_artifactsLocationSasToken" = ""
         "existingAutomationAccountName" = $AutomationAccountName
         "RunbookName" = $RunbookName
