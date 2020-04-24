@@ -282,11 +282,9 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 		Write-Output "Log Analytics workspace primarykey:$LogAnalyticsPrimaryKey"
 		Write-Output "Automation Account Name:$AutomationAccountName"
 		Write-Output "Webhook URI: $($WebhookURI.value)"
-        return $LogAnalyticsWorkspaceId,$LogAnalyticsPrimaryKey,$AutomationAccountName,$WebhookURI.value
 	} else {
 		Write-Output "Automation Account Name:$AutomationAccountName"
 		Write-Output "Webhook URI: $($WebhookURI.value)"
-        return $AutomationAccountName,$($WebhookURI.value)
 	}
 }
 else
