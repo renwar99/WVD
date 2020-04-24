@@ -75,8 +75,7 @@
 	[string]$TenantGroupName
 )
 
-Write-Output "User: $($User)"
-Write-Output "Pass: $($Pass)"
+
 
 #Initializing variables
 $RDBrokerURL = "https://rdbroker.wvd.microsoft.com"
@@ -184,7 +183,7 @@ if ($RoleAssignment.RoleDefinitionName -eq "Owner" -or $RoleAssignment.RoleDefin
 			"LogOffMessageBody" = $LogOffMessageBody }
 		$RequestBodyJson = $RequestBody | ConvertTo-Json
 		$LogicAppName = ($HPName + "_" + "Autoscale" + "_" + "Scheduler").Replace(" ","")
-		$SchedulerDeployment = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ScriptRepoLocation/wvd-scaling-script/azureLogicAppCreation.json" -logicappname $LogicAppName -webhookURI $WebhookURI.Replace("`n","").Replace("`r","") -actionSettingsBody $RequestBodyJson -recurrenceInterval $RecurrenceInterval -Verbose
+		$SchedulerDeployment = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ScriptRepoLocation/wvd-scaling-script/azureLogicAppCreation.json" -logicappname $LogicAppName -webhookURI $WebhookURI -actionSettingsBody $RequestBodyJson -recurrenceInterval $RecurrenceInterval -Verbose
 		if ($SchedulerDeployment.ProvisioningState -eq "Succeeded") {
 			Write-Output "$HPName hostpool successfully configured with logic app scheduler"
 		}
